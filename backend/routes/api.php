@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,3 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/roles', [RoleController::class, 'index']);
+/* routes of user module */
+Route::get('/user', [UserController::class, 'index']); 
+Route::get('/user/findById/{id}', [UserController::class, 'showUserById']);
+Route::post('/user/create', [UserController::class, 'store']);
