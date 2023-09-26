@@ -103,13 +103,13 @@ class DatabaseSeeder extends Seeder
         $assesments = [
             [
                 'name' => 'Evaluacion Java 1',
-                'start_date' => 'Aprendiendo lo Principal',
+                'start_date' => '2023-09-27',
                 'description' => 1,
                 'courses_id' => 1
             ],
             [
                 'name' => 'Evaluacion principios python',
-                'start_date' => 'Aprendiendo lo Principal',
+                'start_date' => '2024-11-14',
                 'description' => 1,
                 'courses_id' => 2
             ],
@@ -164,14 +164,14 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Pricipios de Java 1',
                 'issue_date' => '2024-09-23',
                 'user_id' => 1,
-                'course_id' => 1,
+                'courses_id' => 1,
                 'assessment_id' => 1
             ],
             [
                 'name' => 'Pricipios de Python',
                 'issue_date' => '2024-05-10',
                 'user_id' => 1,
-                'course_id' => 2,
+                'courses_id' => 2,
                 'assessment_id' => 2
             ],
 
