@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Topic extends Model
 {
     use HasFactory;
+
+    protected $table = 'roles';
+    protected $fillable = [
+        'name',
+        'content',
+        'module_id'
+    ];
+
 }
