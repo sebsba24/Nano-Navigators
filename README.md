@@ -1,5 +1,5 @@
 # Nano-navegators
-- Readme en español: [readme.md](readme.md)
+- Readme en español: [readme.md](README.md)
 - Readme en ingles: [readmeEnglish.md](readmeEnglish.md)
 # Proyecto para la Reducción de Deserciones Estudiantiles en Carreras STEM
 
