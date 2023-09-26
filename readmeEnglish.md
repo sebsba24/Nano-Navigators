@@ -1,5 +1,5 @@
 # Nano-navigators
-- Readme in spanish: [readme.md](readme.md)
+- Readme in spanish: [readme.md](README.md)
 - Readme in english: [readmeEnglish.md](readmeEnglish.md)
 ## Project for Reducing Student Dropout Rates in STEM Fields
 
