@@ -21,6 +21,7 @@ return new class extends Migration {
             $table->string('password');
             $table->bigInteger('identification');
             $table->bigInteger('phone');
+            $table->boolean('state');
 
             $table->unsignedBigInteger('role_id');
             $table->foreign('role_id')->references('id')->on('roles')->onDelete('restrict');

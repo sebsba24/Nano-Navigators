@@ -27,7 +27,7 @@ class RoleController extends Controller
             $j['code'] = 500;
         }
         return response()->json($response, 200);
-    }
+    }    
 
     /**
      * Show the form for creating a new resource.
