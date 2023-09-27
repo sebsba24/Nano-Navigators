@@ -14,7 +14,9 @@ class Course extends Model
         'name',
         'description',
         'start_date',
+        'enable_date',
         'end_date',
-        'user_id'
+        'user_id',
+        'state'
     ];
 }

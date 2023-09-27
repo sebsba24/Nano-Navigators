@@ -4,82 +4,87 @@ namespace App\Http\Controllers;
 
 use App\Models\Assesment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AssesmentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
-    {
-        //
+    {        
+        try {
+            $assesment = DB::table('assesments')->get();
+            $response = [
+                'success' => true,
+                'message' => 'Consulta existosa de las evaluaciones',
+                'data' => $assesment
+            ];
+        } catch (\Throwable $th) {
+            $j['success'] = false;
+            $j['data'] = $th->getMessage();
+            $j['code'] = 500;
+        }
+        return response()->json($response, 200);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function findById($id)
     {
-        //
+        try {
+            $assesment = DB::table('assesments')->find($id);
+
+            $response = [];
+            
+            if (!$assesment) {                
+                return response()->json(['success' => false, 'message' => 'Evaluación no encontrada'], 404);
+            } 
+
+            $response = [
+                'success' => true,
+                'message' => 'Consulta exitosa de la evaluacion',
+                'data' => $assesment
+            ];
+        } catch (\Throwable $th) {
+            $j['success'] = false;
+            $j['data'] = $th->getMessage();
+            $j['code'] = 500;
+        }
+        return response()->json($response, 200);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $assesment = Assesment::create([
+            'name' => $request->name,
+            'start_date' => $request->start_date,
+            'description' => $request->description,
+            'courses_id' => $request->courses_id            
+        ]);
+
+        return response()->json(['message' => 'Evaluacion registrada correctamente'], 201);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Assesment  $assesment
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Assesment $assesment)
+    public function update(Request $request, $id)
     {
-        //
-    }
+        try {            
+            try {                
+                $assesment = Assesment::find($id);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Assesment  $assesment
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Assesment $assesment)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Assesment  $assesment
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Assesment $assesment)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Assesment  $assesment
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Assesment $assesment)
-    {
-        //
+                if (!$assesment) {
+                    return response()->json(['success' => false, 'message' => 'Evaluación no encontrada'], 404);
+                }
+                        
+                $assesment->name = $request->name;
+                $assesment->start_date = $request->start_date;
+                $assesment->description = $request->description;
+                $assesment->courses_id = $request->courses_id;   
+                        
+                $assesment->save();
+        
+                return response()->json(['success' => true, 'message' => 'Evaluación actualizado correctamente'], 200);
+        
+            } catch (\Throwable $th) {
+                return response()->json(['success' => false, 'message' => 'Error al actualizar evaluación', 'error' => $th->getMessage()], 500);
+            }
+        } catch (\Throwable $th) {
+            return response()->json(['success' => false, 'message' => 'Evaluación actualizado incorrectamente', 'error' => $th->getMessage()], 500);
+        }
     }
 }
