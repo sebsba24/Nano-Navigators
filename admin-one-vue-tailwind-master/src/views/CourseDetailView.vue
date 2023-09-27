@@ -22,12 +22,15 @@ export default {
     LayoutAuthenticated,
     SectionMain,
     CardBoxWidget,
+    CardBox,
   },
 };
 </script>
 
 <template>
   <LayoutAuthenticated>
-    <SectionMain> </SectionMain>
+    <SectionMain>
+      <CardBox />
+    </SectionMain>
   </LayoutAuthenticated>
 </template>

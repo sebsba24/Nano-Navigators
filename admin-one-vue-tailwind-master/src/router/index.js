@@ -93,6 +93,14 @@ const routes = [
     name: "create-course",
     component: () => import("@/views/CreateCourseView.vue"),
   },
+  {
+    meta: {
+      title: "CourseDetails",
+    },
+    path: "/course-detail/:id", // Ruta con un parámetro ':id'
+    name: "CourseDetailView",
+    component: () => import("@/views/CourseDetailView.vue"),
+  },
 ];
 
 const router = createRouter({

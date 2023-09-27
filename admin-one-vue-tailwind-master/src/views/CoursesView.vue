@@ -11,6 +11,7 @@ import BaseButton from "@/components/BaseButton.vue";
 import CardBoxTransaction from "@/components/CardBoxTransaction.vue";
 import CardBoxClient from "@/components/CardBoxClient.vue";
 import LayoutAuthenticated from "@/layouts/LayoutAuthenticated.vue";
+import CardBoxWidgetCourses from "@/components/CardBoxWidgetCourses.vue";
 
 export default {
   data() {
@@ -21,16 +22,16 @@ export default {
   components: {
     LayoutAuthenticated,
     SectionMain,
-    CardBoxWidget,
+    CardBoxWidgetCourses,
   },
 
   methods: {
     async getCousers() {
       axios
-        .get("https://localhost:8080/api/courses")
+        .get("http://localhost:8000/api/course")
         .then((response) => {
           // Almacenar los datos de la respuesta en el array "items"
-          this.courses = response.data;
+          this.courses = response.data.data;
         })
         .catch((error) => {
           console.error("Error al obtener los datos:", error);
@@ -46,18 +47,17 @@ export default {
 <template>
   <LayoutAuthenticated>
     <SectionMain>
-      <div
-        v-for="course in courses"
-        :key="course.id"
-        class="grid grid-cols-1 gap-6 lg:grid-cols-3 mb-6"
-      >
-        <CardBoxWidget
-          trend="12%"
-          trend-type="up"
-          color="text-emerald-500"
-          :icon="mdiAccountMultiple"
-          :number="512"
-          label="course.name"
+      <div class="grid grid-cols-2 gap-6 lg:grid-cols-3 mb-6">
+        <CardBoxWidgetCourses
+          v-for="course in courses"
+          :key="course.id"
+          :trend="course.trend"
+          :trend-type="course['trend-type']"
+          :color="course.color"
+          :icon="course.icon"
+          :label="course.name"
+          :progress="course.progress"
+          :course-id="course.id"
         />
       </div>
     </SectionMain>

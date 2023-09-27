@@ -19,6 +19,7 @@ return new class extends Migration {
             $table->date('start_date');
             $table->date('enable_date');
             $table->date('end_date');
+            $table->integer('progress');
             $table->boolean('state');
 
             $table->unsignedBigInteger('user_id');
