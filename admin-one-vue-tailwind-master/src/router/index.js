@@ -1,15 +1,15 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import Style from "@/views/StyleView.vue";
 import Home from "@/views/HomeView.vue";
-
+import Login from "@/views/LoginView.vue";
 const routes = [
   {
     meta: {
       title: "Select style",
     },
     path: "/",
-    name: "style",
-    component: Style,
+    name: "Login",
+    component: Login,
   },
   {
     // Document title tag
@@ -92,6 +92,14 @@ const routes = [
     path: "/create-course",
     name: "create-course",
     component: () => import("@/views/CreateCourseView.vue"),
+  },
+  {
+    meta: {
+      title: "Registeruser ",
+    },
+    path: "/registeruser",
+    name: "registeruser",
+    component: () => import("@/views/FormRegisterView.vue"),
   },
 ];
 
