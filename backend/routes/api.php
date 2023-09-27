@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CourseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,3 +26,9 @@ Route::get('/roles', [RoleController::class, 'index']);
 Route::get('/user', [UserController::class, 'index']); 
 Route::get('/user/findById/{id}', [UserController::class, 'showUserById']);
 Route::post('/user/create', [UserController::class, 'store']);
+// routes of course
+Route::get('/course',[CourseController::class,'index']);
+Route::get('/course/findByName/{name}',[CourseController:: class, 'showCourseByName']);
+Route::post('/course/create',[CourseController::class,'store']);
+Route::post('/course/update/{id}',[CourseController::class,'update']);
+Route::post('/course/editState/{id}',[CourseController::class,'editStateCourse']);
