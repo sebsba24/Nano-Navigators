@@ -17,7 +17,20 @@ export default [
   {
     to: "/dashboard",
     icon: mdiMonitor,
-    label: "Dashboard",
+    label: "Inicio",
+  },
+  {
+    to: "/courses",
+    label: "Cursos",
+    icon: mdiViewList,
+    menu: [
+      {
+        label: "Java 1",
+      },
+      {
+        label: "Python",
+      },
+    ],
   },
   {
     to: "/tables",
@@ -58,29 +71,5 @@ export default [
     to: "/error",
     label: "Error",
     icon: mdiAlertCircle,
-  },
-  {
-    label: "Dropdown",
-    icon: mdiViewList,
-    menu: [
-      {
-        label: "Item One",
-      },
-      {
-        label: "Item Two",
-      },
-    ],
-  },
-  {
-    href: "https://github.com/justboil/admin-one-vue-tailwind",
-    label: "GitHub",
-    icon: mdiGithub,
-    target: "_blank",
-  },
-  {
-    href: "https://github.com/justboil/admin-one-react-tailwind",
-    label: "React version",
-    icon: mdiReact,
-    target: "_blank",
   },
 ];

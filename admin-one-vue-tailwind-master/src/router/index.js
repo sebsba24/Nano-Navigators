@@ -23,6 +23,14 @@ const routes = [
   },
   {
     meta: {
+      title: "Courses",
+    },
+    path: "/courses",
+    name: "courses",
+    component: () => import("@/views/CoursesView.vue"),
+  },
+  {
+    meta: {
       title: "Tables",
     },
     path: "/tables",
@@ -76,6 +84,14 @@ const routes = [
     path: "/error",
     name: "error",
     component: () => import("@/views/ErrorView.vue"),
+  },
+  {
+    meta: {
+      title: "CreateCourse",
+    },
+    path: "/create-course",
+    name: "create-course",
+    component: () => import("@/views/CreateCourseView.vue"),
   },
 ];
 
