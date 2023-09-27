@@ -18,7 +18,7 @@ class UserController extends Controller
             $users = DB::table('users')->get();
             $response = [
                 'success' => true,
-                'message' => 'Consulta existosa de los usuarios',
+                'message' => 'Consulta de topics exitosa',
                 'data' => $users
             ];
         } catch (\Throwable $th) {

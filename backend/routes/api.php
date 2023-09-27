@@ -3,6 +3,7 @@
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\TopicController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -32,3 +33,8 @@ Route::get('/course/findByName/{name}',[CourseController:: class, 'showCourseByN
 Route::post('/course/create',[CourseController::class,'store']);
 Route::post('/course/update/{id}',[CourseController::class,'update']);
 Route::post('/course/editState/{id}',[CourseController::class,'editStateCourse']);
+// routes of topics
+Route::get('/topic',[TopicController::class,'index']);
+Route::get('/topic/findByName/{name}',[TopicController::class,'showTopicByName']); 
+Route::post('/topic/create',[TopicController::class,'store']);
+Route::post('/topic/update/{id}',[TopicController::class,'update']);
