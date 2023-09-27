@@ -4,6 +4,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\TopicController;
+use App\Http\Controllers\CertificateController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -38,3 +39,8 @@ Route::get('/topic',[TopicController::class,'index']);
 Route::get('/topic/findByName/{name}',[TopicController::class,'showTopicByName']); 
 Route::post('/topic/create',[TopicController::class,'store']);
 Route::post('/topic/update/{id}',[TopicController::class,'update']);
+// routes of certificate
+Route::get('/certificate',[CertificateController::class,'index']);
+Route::get('/certificate/findByName/{name}',[CertificateController::class,'showCertificateByName']);
+Route::post('/certificate/create',[CertificateController::class,'store']);
+Route::get('/certificate/download',[CertificateController::class,'download']);
