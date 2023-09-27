@@ -93,6 +93,14 @@ const routes = [
     name: "create-course",
     component: () => import("@/views/CreateCourseView.vue"),
   },
+  {
+    meta: {
+      title: "SeeGrades",
+    },
+    path: "/grades",
+    name: "grades",
+    component: () => import("@/views/TablesGrade.vue"),
+  },
 ];
 
 const router = createRouter({
