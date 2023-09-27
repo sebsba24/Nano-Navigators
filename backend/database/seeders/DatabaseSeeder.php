@@ -54,7 +54,6 @@ class DatabaseSeeder extends Seeder
             [
                 'name' => 'Java 1',
                 'description' => 'Primeros pasos en Java',
-                'start_date' => '2023-09-27',
                 'enable_date'=> '2023-09-28',
                 'end_date' => '2023-09-29',
                 'user_id' => 1,
@@ -63,7 +62,6 @@ class DatabaseSeeder extends Seeder
             [
                 'name' => 'Python',
                 'description' => 'Primeros pasos en Python',
-                'start_date' => '2023-10-05',
                 'enable_date'=> '2023-11-20',
                 'end_date' => '2023-12-08',
                 'user_id' => 1,

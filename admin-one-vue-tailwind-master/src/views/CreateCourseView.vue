@@ -59,7 +59,7 @@ const formStatusSubmit = () => {
     <SectionMain>
       <SectionTitleLineWithButton
         :icon="mdiBallotOutline"
-        title="Forms example"
+        title="Crear Curso"
         main
       >
         <BaseButton
