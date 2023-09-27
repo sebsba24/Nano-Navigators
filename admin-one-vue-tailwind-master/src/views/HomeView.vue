@@ -48,10 +48,9 @@ const transactionBarItems = computed(() => mainStore.history);
         :icon="mdiChartTimelineVariant"
         title="Cursos asignados"
         main
-      >
-      </SectionTitleLineWithButton>
+      />      
 
-      <div class="grid grid-cols-1 gap-6 lg:grid-cols-3 mb-6">
+      <div class="grid grid-cols-1 gap-5 lg:grid-cols-3 mb-6">
         <CardBoxWidget
           trend="12%"
           trend-type="up"
@@ -59,24 +58,6 @@ const transactionBarItems = computed(() => mainStore.history);
           :icon="mdiAccountMultiple"
           :number="512"
           label="Cursos"
-        />
-        <CardBoxWidget
-          trend="12%"
-          trend-type="down"
-          color="text-blue-500"
-          :icon="mdiCartOutline"
-          :number="7770"
-          prefix="$"
-          label="Estudiantes aprobando"
-        />
-        <CardBoxWidget
-          trend="Overflow"
-          trend-type="alert"
-          color="text-red-500"
-          :icon="mdiChartTimelineVariant"
-          :number="256"
-          suffix="%"
-          label="Estudiantes reprobando"
         />
       </div>
 

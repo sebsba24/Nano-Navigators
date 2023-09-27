@@ -103,11 +103,12 @@ const checked = (isChecked, client) => {
       <tr>
         <th v-if="checkable" />
         <th />
-        <th>Name</th>
-        <th>Company</th>
-        <th>City</th>
-        <th>Progress</th>
-        <th>Created</th>
+        <th>ID</th>
+        <th>Nombre completo</th>
+        <th>Correo eléctronico</th>
+        <th>Telefono</th>        
+        <th>Estado</th>
+        <th>Opciones</th>
         <th />
       </tr>
     </thead>

@@ -34,7 +34,7 @@ export default [
   },
   {
     to: "/tables",
-    label: "Tables",
+    label: "Usuarios",
     icon: mdiTable,
   },
   {
