@@ -1,17 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         try {
@@ -56,22 +51,28 @@ class UserController extends Controller
         return response()->json($response, 200);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function editStateUser(Request $request, $id)
     {
-        //
+        try {
+            try {
+                // find the user 
+                $user = User::find($id);
+                                        
+                //set the state of the user
+                $user->state = $request->state;                
+        
+                // save the data changed
+                $user->save();
+        
+                return response()->json(['success' => true, 'message' => 'Usuario actualizado correctamente'], 200);        
+            } catch (\Throwable $th) {
+                return response()->json(['success' => false, 'message' => 'Usuario actualizado incorrectamente', 'error' => $th->getMessage()], 500);
+            }
+        } catch (\Throwable $th) {
+            return response()->json(['success' => false, 'message' => 'Usuario actualizado incorrectamente', 'error' => $th->getMessage()], 500);
+        }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $user = User::create([
@@ -80,55 +81,54 @@ class UserController extends Controller
             'email' => $request->email,
             'identification' => $request->identification,
             'phone' => $request->phone,
+            'state' => true,
             'role_id' => $request->role_id,
             'password' => bcrypt($request->password)
         ]);
 
         return response()->json(['message' => 'Usuario registrado correctamente'], 201);
     }
+  
+    public function update(Request $request, $id)
+    {        
+        try {
+            //this code is generate by IA and refactored by us
+            try {
+                // Encuentra el usuario por su ID
+                $user = User::find($id);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Topic  $topic
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Topic $topic)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Topic  $topic
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Topic $topic)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Topic  $topic
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Topic $topic)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Topic  $topic
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Topic $topic)
-    {
-        //
+                //we validate if the data is correct
+                $validatedData = $request->validate([
+                    'name' => 'required|string|max:255',
+                    'last_name' => 'required|string|max:255',
+                    'email' => 'required|string|email|max:255',                    
+                ]);
+        
+                //if the object user don't exists, the response return a error
+                if (!$user) {
+                    return response()->json(['success' => false, 'message' => 'Usuario no encontrado'], 404);
+                }
+        
+                // Actualiza los campos del usuario
+                $user->name = $request->name;
+                $user->last_name = $request->last_name;
+                $user->email = $request->email;
+                $user->identification = $request->identification;
+                $user->phone = $request->phone;
+                $user->role_id = $request->role_id;
+                $user->state = true;
+                $user->password = bcrypt($request->password);
+        
+                // Guarda los cambios
+                $user->save();
+        
+                return response()->json(['success' => true, 'message' => 'Usuario actualizado correctamente'], 200);
+        
+            } catch (\Throwable $th) {
+                return response()->json(['success' => false, 'message' => 'Usuario actualizado incorrectamente', 'error' => $th->getMessage()], 500);
+            }
+        } catch (\Throwable $th) {
+            return response()->json(['success' => false, 'message' => 'Usuario actualizado incorrectamente', 'error' => $th->getMessage()], 500);
+        }
     }
 }

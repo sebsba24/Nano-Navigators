@@ -25,3 +25,5 @@ Route::get('/roles', [RoleController::class, 'index']);
 Route::get('/user', [UserController::class, 'index']); 
 Route::get('/user/findById/{id}', [UserController::class, 'showUserById']);
 Route::post('/user/create', [UserController::class, 'store']);
+Route::put('/user/update/{id}', [UserController::class, 'update']);
+Route::put('/user/setState/{id}', [UserController::class, 'editStateUser']);
