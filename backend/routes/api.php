@@ -20,7 +20,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+/* routes of rol module */
 Route::get('/roles', [RoleController::class, 'index']);
+Route::put('/roles/update/{id}', [RoleController::class, 'update']);
 /* routes of user module */
 Route::get('/user', [UserController::class, 'index']); 
 Route::get('/user/findById/{id}', [UserController::class, 'showUserById']);
