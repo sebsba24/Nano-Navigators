@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AssesmentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -29,3 +30,8 @@ Route::get('/user/findById/{id}', [UserController::class, 'showUserById']);
 Route::post('/user/create', [UserController::class, 'store']);
 Route::put('/user/update/{id}', [UserController::class, 'update']);
 Route::put('/user/setState/{id}', [UserController::class, 'editStateUser']);
+/* Routes of assesment module */
+Route::get('/assesments', [AssesmentController::class, 'index']);
+Route::get('/assesments/findById/{id}', [AssesmentController::class, 'findById']);
+Route::post('/assesments/create', [AssesmentController::class, 'store']);
+Route::put('/assesments/update/{id}', [AssesmentController::class, 'update']);
