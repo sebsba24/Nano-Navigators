@@ -46,18 +46,9 @@ const transactionBarItems = computed(() => mainStore.history);
     <SectionMain>
       <SectionTitleLineWithButton
         :icon="mdiChartTimelineVariant"
-        title="Overview"
+        title="Cursos asignados"
         main
       >
-        <BaseButton
-          href="https://github.com/justboil/admin-one-vue-tailwind"
-          target="_blank"
-          :icon="mdiGithub"
-          label="Star on GitHub"
-          color="contrast"
-          rounded-full
-          small
-        />
       </SectionTitleLineWithButton>
 
       <div class="grid grid-cols-1 gap-6 lg:grid-cols-3 mb-6">
@@ -67,7 +58,7 @@ const transactionBarItems = computed(() => mainStore.history);
           color="text-emerald-500"
           :icon="mdiAccountMultiple"
           :number="512"
-          label="Clients"
+          label="Cursos"
         />
         <CardBoxWidget
           trend="12%"
@@ -76,7 +67,7 @@ const transactionBarItems = computed(() => mainStore.history);
           :icon="mdiCartOutline"
           :number="7770"
           prefix="$"
-          label="Sales"
+          label="Estudiantes aprobando"
         />
         <CardBoxWidget
           trend="Overflow"
@@ -85,60 +76,27 @@ const transactionBarItems = computed(() => mainStore.history);
           :icon="mdiChartTimelineVariant"
           :number="256"
           suffix="%"
-          label="Performance"
+          label="Estudiantes reprobando"
         />
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-        <div class="flex flex-col justify-between">
-          <CardBoxTransaction
-            v-for="(transaction, index) in transactionBarItems"
-            :key="index"
-            :amount="transaction.amount"
-            :date="transaction.date"
-            :business="transaction.business"
-            :type="transaction.type"
-            :name="transaction.name"
-            :account="transaction.account"
-          />
-        </div>
-        <div class="flex flex-col justify-between">
-          <CardBoxClient
-            v-for="client in clientBarItems"
-            :key="client.id"
-            :name="client.name"
-            :login="client.login"
-            :date="client.created"
-            :progress="client.progress"
-          />
-        </div>
-      </div>
-
-      <SectionBannerStarOnGitHub class="mt-6 mb-6" />
-
-      <SectionTitleLineWithButton :icon="mdiChartPie" title="Trends overview">
-        <BaseButton
-          :icon="mdiReload"
-          color="whiteDark"
-          @click="fillChartData"
-        />
+      <SectionTitleLineWithButton
+        :icon="mdiChartTimelineVariant"
+        title="Estudiantes"
+        main
+      >
       </SectionTitleLineWithButton>
 
-      <CardBox class="mb-6">
-        <div v-if="chartData">
-          <line-chart :data="chartData" class="h-96" />
-        </div>
-      </CardBox>
-
-      <SectionTitleLineWithButton :icon="mdiAccountMultiple" title="Clients" />
-
-      <NotificationBar color="info" :icon="mdiMonitorCellphone">
-        <b>Responsive table.</b> Collapses on mobile
-      </NotificationBar>
-
-      <CardBox has-table>
-        <TableSampleClients />
-      </CardBox>
+      <div class="flex flex-col justify-between">
+        <CardBoxClient
+          v-for="client in clientBarItems"
+          :key="client.id"
+          :name="client.name"
+          :login="client.login"
+          :date="client.created"
+          :progress="client.progress"
+        />
+      </div>
     </SectionMain>
   </LayoutAuthenticated>
 </template>

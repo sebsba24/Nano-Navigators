@@ -49,7 +49,7 @@ class DatabaseSeeder extends Seeder
             \App\Models\User::factory()->create($user);
         }
 
-        //*Migration Courses
+        //*Courses Migration
         $courses = [
             [
                 'name' => 'Java 1',
@@ -71,7 +71,7 @@ class DatabaseSeeder extends Seeder
             \App\Models\Course::factory()->create($course);
         }
 
-        //*Migration Modules
+        //*Modules Migration 
         $modules = [
             [
                 'name' => 'Principios',
@@ -99,7 +99,7 @@ class DatabaseSeeder extends Seeder
             \App\Models\Module::factory()->create($module);
         }
 
-        //*Migration Assesment
+        //*Assesment Migration 
         $assesments = [
             [
                 'name' => 'Evaluacion Java 1',
@@ -120,7 +120,7 @@ class DatabaseSeeder extends Seeder
             \App\Models\Assesment::factory()->create($assesment);
         }
 
-        //*Migration grades
+        //*Grades Migration 
         $grades = [
             [
                 'grade' => 100,
@@ -139,7 +139,7 @@ class DatabaseSeeder extends Seeder
             \App\Models\Grade::factory()->create($grade);
         }
 
-        //*Migration Topics
+        //*Topics Migration 
         $topics = [
             [
                 'name' => 'Bucles',
@@ -158,7 +158,7 @@ class DatabaseSeeder extends Seeder
             \App\Models\Topic::factory()->create($topics);
         }
 
-        //*Migration certificates
+        //*Certificates Migration 
         $certificates = [
             [
                 'name' => 'Pricipios de Java 1',
