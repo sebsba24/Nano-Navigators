@@ -101,6 +101,14 @@ const routes = [
     name: "registeruser",
     component: () => import("@/views/FormRegisterView.vue"),
   },
+  {
+    meta: {
+      title: "SeeGrades",
+    },
+    path: "/grades",
+    name: "grades",
+    component: () => import("@/views/TablesGrade.vue"),
+  },
 ];
 
 const router = createRouter({

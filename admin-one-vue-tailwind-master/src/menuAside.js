@@ -11,6 +11,8 @@ import {
   mdiResponsive,
   mdiPalette,
   mdiReact,
+  mdiAccount,
+  mdiFormatListChecks,
 } from "@mdi/js";
 
 export default [
@@ -36,6 +38,11 @@ export default [
     to: "/tables",
     label: "Usuarios",
     icon: mdiTable,
+  },
+  {
+    to: "/grades",
+    label: "Mis notas",
+    icon: mdiFormatListChecks,
   },
   {
     to: "/forms",
