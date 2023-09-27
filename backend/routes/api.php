@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\GradeController;
 use App\Http\Controllers\AssesmentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -35,3 +36,8 @@ Route::get('/assesments', [AssesmentController::class, 'index']);
 Route::get('/assesments/findById/{id}', [AssesmentController::class, 'findById']);
 Route::post('/assesments/create', [AssesmentController::class, 'store']);
 Route::put('/assesments/update/{id}', [AssesmentController::class, 'update']);
+/* Routes of grades module */
+Route::get('/grades', [GradeController::class, 'index']);
+Route::get('/grades/findById/{id}', [GradeController::class, 'findById']);
+Route::post('/grades/create', [GradeController::class, 'store']);
+Route::put('/grades/update/{id}', [GradeController::class, 'update']);
