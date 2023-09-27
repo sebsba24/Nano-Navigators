@@ -11,6 +11,8 @@ import {
   mdiResponsive,
   mdiPalette,
   mdiReact,
+  mdiAccount,
+  mdiFormatListChecks,
 } from "@mdi/js";
 
 export default [
@@ -38,34 +40,19 @@ export default [
     icon: mdiTable,
   },
   {
+    to: "/grades",
+    label: "Mis notas",
+    icon: mdiFormatListChecks,
+  },
+  {
     to: "/forms",
-    label: "Forms",
+    label: "Crear curso",
     icon: mdiSquareEditOutline,
-  },
-  {
-    to: "/ui",
-    label: "UI",
-    icon: mdiTelevisionGuide,
-  },
-  {
-    to: "/responsive",
-    label: "Responsive",
-    icon: mdiResponsive,
-  },
-  {
-    to: "/",
-    label: "Styles",
-    icon: mdiPalette,
   },
   {
     to: "/profile",
     label: "Profile",
     icon: mdiAccountCircle,
-  },
-  {
-    to: "/login",
-    label: "Login",
-    icon: mdiLock,
   },
   {
     to: "/error",

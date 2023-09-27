@@ -1,15 +1,13 @@
 <script setup>
 import { computed, ref } from "vue";
 import { useMainStore } from "@/stores/main";
-import { mdiEye, mdiTrashCan, mdiPencil } from "@mdi/js";
+import { mdiEye, mdiTrashCan } from "@mdi/js";
 import CardBoxModal from "@/components/CardBoxModal.vue";
 import TableCheckboxCell from "@/components/TableCheckboxCell.vue";
 import BaseLevel from "@/components/BaseLevel.vue";
 import BaseButtons from "@/components/BaseButtons.vue";
 import BaseButton from "@/components/BaseButton.vue";
 import UserAvatar from "@/components/UserAvatar.vue";
-import FormField from "@/components/FormField.vue";
-import FormControl from "@/components/FormControl.vue";
 
 defineProps({
   checkable: Boolean,
@@ -72,49 +70,12 @@ const checked = (isChecked, client) => {
     );
   }
 };
-
-const submit = () => {
-  //
-};
-
-const formStatusWithHeader = ref(true);
-
-const formStatusCurrent = ref(0);
-
-const formStatusOptions = ["info", "success", "danger", "warning"];
-
-const formStatusSubmit = () => {
-  formStatusCurrent.value = formStatusOptions[formStatusCurrent.value + 1]
-    ? formStatusCurrent.value + 1
-    : 0;
-};
 </script>
 
 <template>
   <CardBoxModal v-model="isModalActive" title="Sample modal">
-    <p>Lorem ipsum dolor sit amet <b>adipiscing elit</b></p>
-    <p>This is sample modal</p>
-  </CardBoxModal>  
-
-  <CardBoxModal
-    v-model="isModalDangerActive"
-    title="Please confirm"
-    button="danger"
-    has-cancel
-  >
-    <p>Lorem ipsum dolor sit amet <b>adipiscing elit</b></p>
-    <p>This is sample modal</p>
+    <p>Tu nota fue de  <b>5.0</b></p>    
   </CardBoxModal>
-
-  <div v-if="checkedRows.length" class="p-3 bg-gray-100/50 dark:bg-slate-800">
-    <span
-      v-for="checkedRow in checkedRows"
-      :key="checkedRow.id"
-      class="inline-block px-2 py-1 rounded-sm mr-2 text-sm bg-gray-100 dark:bg-slate-700"
-    >
-      {{ checkedRow.name }}
-    </span>
-  </div>
 
   <table>
     <thead>
@@ -122,51 +83,23 @@ const formStatusSubmit = () => {
         <th v-if="checkable" />
         <th />
         <th>ID</th>
-        <th>Nombre completo</th>
-        <th>Correo eléctronico</th>
-        <th>Telefono</th>        
-        <th>Estado</th>
-        <th>Opciones</th>
+        <th>Evaluación</th>
+        <th>Nota</th>
         <th />
       </tr>
     </thead>
     <tbody>
       <tr v-for="client in itemsPaginated" :key="client.id">
-        <TableCheckboxCell
-          v-if="checkable"
-          @checked="checked($event, client)"
-        />
-        <td class="border-b-0 lg:w-6 before:hidden">
-          <UserAvatar
-            :username="client.name"
-            class="w-24 h-24 mx-auto lg:w-6 lg:h-6"
-          />
-        </td>
+        <td></td>
         <td data-label="Name">
-          {{ client.name }}
+          #
         </td>
         <td data-label="Company">
-          {{ client.company }}
+          Nombre evaluación
         </td>
         <td data-label="City">
-          {{ client.city }}
-        </td>
-        <td data-label="Progress" class="lg:w-32">
-          <progress
-            class="flex w-2/5 self-center lg:w-full"
-            max="100"
-            :value="client.progress"
-          >
-            {{ client.progress }}
-          </progress>
-        </td>
-        <td data-label="Created" class="lg:w-1 whitespace-nowrap">
-          <small
-            class="text-gray-500 dark:text-slate-400"
-            :title="client.created"
-            >{{ client.created }}</small
-          >
-        </td>
+          Nota
+        </td>                
         <td class="before:hidden lg:w-1 whitespace-nowrap">
           <BaseButtons type="justify-start lg:justify-end" no-wrap>
             <BaseButton
@@ -175,18 +108,6 @@ const formStatusSubmit = () => {
               small
               @click="isModalActive = true"
             />
-            <BaseButton
-              color="info"
-              :icon="mdiPencil"
-              small
-              to="/asd"
-            />
-            <BaseButton
-              color="danger"
-              :icon="mdiTrashCan"
-              small
-              @click="isModalDangerActive = true"
-            />            
           </BaseButtons>
         </td>
       </tr>

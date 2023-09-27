@@ -22,13 +22,10 @@ export default [
         label: "Mi perfil",
         to: "/profile",
       },
-      {
-        icon: mdiCogOutline,
-        label: "Configuraciones",
-      },
       {       
         icon: mdiAccountBox,
         label: "Mis cursos",
+        to: "/courses",
       },
       {
         isDivider: true,
@@ -36,6 +33,7 @@ export default [
       {
         icon: mdiLogout,
         label: "Cerrar sesión",
+        to:"/",
         isLogout: true,
       },
     ],
@@ -49,6 +47,7 @@ export default [
   {
     icon: mdiLogout,
     label: "Log out",
+    to:"/",
     isDesktopNoLabel: true,
     isLogout: true,
   },
