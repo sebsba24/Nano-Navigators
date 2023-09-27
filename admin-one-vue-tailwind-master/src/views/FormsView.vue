@@ -59,7 +59,7 @@ const formStatusSubmit = () => {
     <SectionMain>
       <SectionTitleLineWithButton
         :icon="mdiBallotOutline"
-        title="Forms example"
+        title="Crear Formulario"
         main
       >
         <BaseButton
@@ -72,113 +72,69 @@ const formStatusSubmit = () => {
           small
         />
       </SectionTitleLineWithButton>
+
       <CardBox form @submit.prevent="submit">
-        <FormField label="Grouped with icons">
-          <FormControl v-model="form.name" :icon="mdiAccount" />
-          <FormControl v-model="form.email" type="email" :icon="mdiMail" />
-        </FormField>
+        <!-- Imagen a la izquierda -->
+        <div class="flex flex-wrap items-center">
+          <div class="w-1/4">
+            <img src="ruta_de_la_imagen.jpg" alt="Imagen" />
+          </div>
+          
+          <!-- Caja de contenido -->
+          <div class="w-3/4 p-4">
+            <FormField label="Profesor Responsable">
+              <FormControl v-model="form.profesorResponsable" :icon="mdiAccount"/>
+            </FormField>
 
-        <FormField label="With help line" help="Do not enter the leading zero">
-          <FormControl
-            v-model="form.phone"
-            type="tel"
-            placeholder="Your phone number"
-          />
-        </FormField>
+            <FormField label="Nombre">
+              <FormControl v-model="form.nombre" :icon="mdiAccount"/>
+            </FormField>
 
-        <FormField label="Dropdown">
-          <FormControl v-model="form.department" :options="selectOptions" />
-        </FormField>
+            <FormField label="Descripción">
+              <FormControl type="textarea" v-model="form.descripcion" />
+            </FormField>
 
-        <BaseDivider />
+            <FormField label="Fecha de Habilitación">
+              <FormControl type="date" v-model="form.fechaHabilitacion" />
+            </FormField>
 
-        <FormField label="Question" help="Your question. Max 255 characters">
-          <FormControl
-            type="textarea"
-            placeholder="Explain how we can help you"
-          />
-        </FormField>
+            <FormField label="Fecha de Terminación">
+              <FormControl type="date" v-model="form.fechaTerminacion" />
+            </FormField>
 
-        <template #footer>
-          <BaseButtons>
-            <BaseButton type="submit" color="info" label="Submit" />
-            <BaseButton type="reset" color="info" outline label="Reset" />
-          </BaseButtons>
-        </template>
-      </CardBox>
-    </SectionMain>
-
-    <SectionTitle>Custom elements</SectionTitle>
-
-    <SectionMain>
-      <CardBox>
-        <FormField label="Checkbox">
-          <FormCheckRadioGroup
-            v-model="customElementsForm.checkbox"
-            name="sample-checkbox"
-            :options="{ lorem: 'Lorem', ipsum: 'Ipsum', dolore: 'Dolore' }"
-          />
-        </FormField>
-
-        <BaseDivider />
-
-        <FormField label="Radio">
-          <FormCheckRadioGroup
-            v-model="customElementsForm.radio"
-            name="sample-radio"
-            type="radio"
-            :options="{ one: 'One', two: 'Two' }"
-          />
-        </FormField>
-
-        <BaseDivider />
-
-        <FormField label="Switch">
-          <FormCheckRadioGroup
-            v-model="customElementsForm.switch"
-            name="sample-switch"
-            type="switch"
-            :options="{ one: 'One', two: 'Two' }"
-          />
-        </FormField>
-
-        <BaseDivider />
-
-        <FormFilePicker v-model="customElementsForm.file" label="Upload" />
-      </CardBox>
-
-      <SectionTitle>Form with status example</SectionTitle>
-
-      <CardBox
-        class="md:w-7/12 lg:w-5/12 xl:w-4/12 shadow-2xl md:mx-auto"
-        is-form
-        is-hoverable
-        @submit.prevent="formStatusSubmit"
-      >
-        <NotificationBarInCard
-          :color="formStatusOptions[formStatusCurrent]"
-          :is-placed-with-header="formStatusWithHeader"
-        >
-          <span
-            ><b class="capitalize">{{
-              formStatusOptions[formStatusCurrent]
-            }}</b>
-            state</span
-          >
-        </NotificationBarInCard>
-        <FormField label="Fields">
-          <FormControl
-            v-model="form.name"
-            :icon-left="mdiAccount"
-            help="Your full name"
-            placeholder="Name"
-          />
-        </FormField>
-
-        <template #footer>
-          <BaseButton label="Trigger" type="submit" color="info" />
-        </template>
+            <div class="flex justify-between mt-4">
+              <BaseButton type="submit" color="info" label="Confirmar" />
+              <BaseButton type="button" color="info" outline label="Cancelar" @click="cancel" />
+            </div>
+          </div>
+        </div>
       </CardBox>
     </SectionMain>
   </LayoutAuthenticated>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      form: {
+        profesorResponsable: '',
+        nombre: '',
+        descripcion: '',
+        fechaCreacion: '',
+        fechaHabilitacion: '',
+        fechaTerminacion: '',
+        estado: true, // Estado predeterminado en true
+      },
+    };
+  },
+  methods: {
+    submit() {
+      // Aquí puedes manejar la lógica para enviar el formulario
+    },
+    cancel() {
+      // Aquí puedes manejar la cancelación del formulario
+    },
+  },
+};
+</script>

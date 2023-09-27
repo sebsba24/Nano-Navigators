@@ -72,7 +72,6 @@ class CourseController extends Controller
             $course = Course::create([
                 'name' => $request->name,
                 'description' => $request ->description,
-                'start_date' => $request -> start_date,
                 'enable_date'=> $request -> enable_date,
                 'end_date' => $request -> end_date,
                 'user_id' => $request -> user_id,
