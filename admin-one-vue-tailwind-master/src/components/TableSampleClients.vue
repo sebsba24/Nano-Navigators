@@ -2,7 +2,7 @@
 import { computed, ref } from "vue";
 import { useMainStore } from "@/stores/main";
 import { mdiEye, mdiTrashCan, mdiPencil } from "@mdi/js";
-import CardBoxModal from "@/components/CardBoxModal.vue";
+import CardBoxModalDelete from "@/components/CardBoxModalDelete.vue";
 import TableCheckboxCell from "@/components/TableCheckboxCell.vue";
 import BaseLevel from "@/components/BaseLevel.vue";
 import BaseButtons from "@/components/BaseButtons.vue";
@@ -91,20 +91,21 @@ const formStatusSubmit = () => {
 </script>
 
 <template>
-  <CardBoxModal v-model="isModalActive" title="Sample modal">
+  <CardBoxModalDelete v-model="isModalActive" title="Sample modal">
     <p>Lorem ipsum dolor sit amet <b>adipiscing elit</b></p>
     <p>This is sample modal</p>
-  </CardBoxModal>  
+  </CardBoxModalDelete>  
 
-  <CardBoxModal
+  <CardBoxModalDelete
     v-model="isModalDangerActive"
-    title="Please confirm"
+    hasCancel=true
     button="danger"
-    has-cancel
+    buttonLabel="Acepto"
+    title="¿Quieres eliminarlo?"
   >
-    <p>Lorem ipsum dolor sit amet <b>adipiscing elit</b></p>
-    <p>This is sample modal</p>
-  </CardBoxModal>
+    ¿Enserio quieres eliminar al usuario?
+    Da click al botón de aceptar, o cancela.
+  </CardBoxModalDelete>
 
   <div v-if="checkedRows.length" class="p-3 bg-gray-100/50 dark:bg-slate-800">
     <span
@@ -179,7 +180,7 @@ const formStatusSubmit = () => {
               color="info"
               :icon="mdiPencil"
               small
-              to="/asd"
+              to="/updateUser"
             />
             <BaseButton
               color="danger"

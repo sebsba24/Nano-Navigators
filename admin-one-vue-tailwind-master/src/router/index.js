@@ -117,6 +117,14 @@ const routes = [
     name: "grades",
     component: () => import("@/views/TablesGrade.vue"),
   },
+  {
+    meta: {
+      title: "Actualizar Usuario",
+    },
+    path: "/updateUser",
+    name: "updateUser",
+    component: () => import("@/views/FormUpdateUser.vue"),
+  },  
 ];
 
 const router = createRouter({
