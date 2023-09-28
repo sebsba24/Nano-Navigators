@@ -39,24 +39,34 @@ const successMessage = ref("");
 // Define el método submit utilizando la Composition API
 async function submit() {
   try {
-    // Realiza la solicitud para guardar la información del formulario
     const response = await axios.post(
       "http://localhost:8000/api/course/create",
       form.value
-    ); // Reemplaza formData con los datos del formulario
+    );
 
-    // Verifica si la solicitud se completó exitosamente
-    if (response.status === 200) {
-      successMessage.value = "Categoría creada"; // Asigna el mensaje de éxito
-      showSuccessMessage(); // Muestra el mensaje de éxito
-    }
+    const successMessage = "Curso creada"; // Define el mensaje de éxito aquí
+    Swal.fire({
+      title: successMessage,
+      confirmButtonText: "Listo",
+      icon: "success",
+      showConfirmButton: false,
+      timer: 3500,
+      timerProgressBar: true,
+      position: "bottom-end",
+      toast: true,
+    });
+    reset();
   } catch (error) {
     console.error("Error al guardar los datos:", error);
   }
 }
 
-// Define una función para mostrar el mensaje de éxito
+function reset() {
+  form.value = "";
+}
+
 function showSuccessMessage() {
+  console.log(successMessage.value);
   Swal.fire({
     title: successMessage.value,
     icon: "success",
