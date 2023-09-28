@@ -1,11 +1,14 @@
 <script setup>
 import { mdiCog } from "@mdi/js";
+import { useRouter } from "vue-router";
 import CardBox from "@/components/CardBox.vue";
 import NumberDynamic from "@/components/NumberDynamic.vue";
 import BaseIcon from "@/components/BaseIcon.vue";
 import BaseLevel from "@/components/BaseLevel.vue";
 import PillTagTrend from "@/components/PillTagTrend.vue";
 import BaseButton from "@/components/BaseButton.vue";
+
+const router = useRouter();
 
 const redirectToCourseDetail = (courseId) => {
   // Verifica que tengas un número válido (ID de curso)
@@ -98,7 +101,7 @@ defineProps({
             </div>
           </div>
           <div
-            class="flex w-full overflow-hidden h-2 mb-4 text-xs flex rounded bg-emerald-200"
+            class="flex w-full overflow-hidden h-2 mb-4 text-xs rounded bg-emerald-200"
           >
             <div
               :style="{ width: progress + '%' }"

@@ -15,23 +15,16 @@ import LayoutAuthenticated from "@/layouts/LayoutAuthenticated.vue";
 import SectionTitleLineWithButton from "@/components/SectionTitleLineWithButton.vue";
 import NotificationBarInCard from "@/components/NotificationBarInCard.vue";
 import axios from "axios";
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 
-const title = ref('');
+const title = ref("");
 
-// const selectOptions = [
-//   { id: 1, label: "Business development" },
-//   { id: 2, label: "Marketing" },
-//   { id: 3, label: "Sales" },
-// ];
-
-const form = reactive({
+const form = ref({
   name: "",
   description: "",
-  enabled_date: "",
+  enable_date: "",
   end_date: "",
-  progress: "0",
-  user_id: "",
+  user_id: 1,
 });
 
 const customElementsForm = reactive({
@@ -41,27 +34,44 @@ const customElementsForm = reactive({
   file: null,
 });
 
-const successMessage = ref('');
+const successMessage = ref("");
 
 // Define el método submit utilizando la Composition API
 async function submit() {
   try {
-    // Realiza la solicitud para guardar la información del formulario
-    const response = await axios.post('http://localhost:8000/api/user', form); // Reemplaza formData con los datos del formulario
+    const response = await axios.post(
+      "http://localhost:8000/api/course/create",
+      form.value
+    );
 
-    // Verifica si la solicitud se completó exitosamente
-    if (response.status === 200) {
-      successMessage.value = 'Categoría creada'; // Asigna el mensaje de éxito
-      showSuccessMessage(); // Muestra el mensaje de éxito
-    }
+    const successMessage = "Curso creada"; // Define el mensaje de éxito aquí
+    Swal.fire({
+      title: successMessage,
+      confirmButtonText: "Listo",
+      icon: "success",
+      showConfirmButton: false,
+      timer: 3500,
+      timerProgressBar: true,
+      position: "bottom-end",
+      toast: true,
+    });
+    reset();
   } catch (error) {
-    console.error('Error al guardar los datos:', error);
+    console.error("Error al guardar los datos:", error);
   }
 }
 
-// Define una función para mostrar el mensaje de éxito
+function reset() {
+  form.value = "";
+}
+
 function showSuccessMessage() {
-  Swal.fire({ title: successMessage.value, icon: 'success', confirmButtonText: 'Listo' });
+  console.log(successMessage.value);
+  Swal.fire({
+    title: successMessage.value,
+    icon: "success",
+    confirmButtonText: "Listo",
+  });
 }
 
 const formStatusWithHeader = ref(true);
@@ -75,6 +85,10 @@ const formStatusSubmit = () => {
     ? formStatusCurrent.value + 1
     : 0;
 };
+
+const props = defineProps({
+  users: { type: Object },
+});
 </script>
 
 <template>
@@ -90,12 +104,10 @@ const formStatusSubmit = () => {
       <CardBox form @submit.prevent="submit">
         <!-- Imagen a la izquierda -->
         <div class="d-flex items-center">
-          
           <!-- Caja de contenido -->
           <div class="wp-4">
-
             <FormField label="Nombre del Curso">
-              <FormControl v-model="form.name" :icon="mdiAccount"/>
+              <FormControl v-model="form.name" :icon="mdiAccount" />
             </FormField>
 
             <FormField label="Descripción">
@@ -103,7 +115,7 @@ const formStatusSubmit = () => {
             </FormField>
 
             <FormField label="Fecha de Habilitación">
-              <FormControl type="date" v-model="form.enabled_date" />
+              <FormControl type="date" v-model="form.enable_date" />
             </FormField>
 
             <FormField label="Fecha de Terminación">
@@ -111,8 +123,19 @@ const formStatusSubmit = () => {
             </FormField>
 
             <div class="flex justify-between mt-4">
-              <BaseButton type="submit" color="info" label="Confirmar" @click="submit"/>
-              <BaseButton type="button" color="info" outline label="Cancelar" @click="cancel" />
+              <BaseButton
+                type="submit"
+                color="info"
+                label="Confirmar"
+                @click="submit"
+              />
+              <BaseButton
+                type="button"
+                color="info"
+                outline
+                label="Cancelar"
+                @click="cancel"
+              />
             </div>
           </div>
         </div>
@@ -120,29 +143,3 @@ const formStatusSubmit = () => {
     </SectionMain>
   </LayoutAuthenticated>
 </template>
-
-<script>
-export default {
-  data() {
-    return {
-      form: {
-        profesorResponsable: '',
-        nombre: '',
-        descripcion: '',
-        fechaCreacion: '',
-        fechaHabilitacion: '',
-        fechaTerminacion: '',
-        estado: true, // Estado predeterminado en true
-      },
-    };
-  },
-  methods: {
-    submit() {
-      // Aquí puedes manejar la lógica para enviar el formulario
-    },
-    cancel() {
-      // Aquí puedes manejar la cancelación del formulario
-    },
-  },
-};
-</script>
