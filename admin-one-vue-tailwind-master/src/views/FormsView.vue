@@ -14,20 +14,17 @@ import SectionTitle from "@/components/SectionTitle.vue";
 import LayoutAuthenticated from "@/layouts/LayoutAuthenticated.vue";
 import SectionTitleLineWithButton from "@/components/SectionTitleLineWithButton.vue";
 import NotificationBarInCard from "@/components/NotificationBarInCard.vue";
+import axios from "axios";
+import Swal from "sweetalert2";
 
-const selectOptions = [
-  { id: 1, label: "Business development" },
-  { id: 2, label: "Marketing" },
-  { id: 3, label: "Sales" },
-];
+const title = ref("");
 
-const form = reactive({
-  name: "John Doe",
-  email: "john.doe@example.com",
-  phone: "",
-  department: selectOptions[0],
-  subject: "",
-  question: "",
+const form = ref({
+  name: "",
+  description: "",
+  enable_date: "",
+  end_date: "",
+  user_id: 1,
 });
 
 const customElementsForm = reactive({
@@ -37,9 +34,45 @@ const customElementsForm = reactive({
   file: null,
 });
 
-const submit = () => {
-  //
-};
+const successMessage = ref("");
+
+// Define el método submit utilizando la Composition API
+async function submit() {
+  try {
+    const response = await axios.post(
+      "http://localhost:8000/api/course/create",
+      form.value
+    );
+
+    const successMessage = "Curso creada"; // Define el mensaje de éxito aquí
+    Swal.fire({
+      title: successMessage,
+      confirmButtonText: "Listo",
+      icon: "success",
+      showConfirmButton: false,
+      timer: 3500,
+      timerProgressBar: true,
+      position: "bottom-end",
+      toast: true,
+    });
+    reset();
+  } catch (error) {
+    console.error("Error al guardar los datos:", error);
+  }
+}
+
+function reset() {
+  form.value = "";
+}
+
+function showSuccessMessage() {
+  console.log(successMessage.value);
+  Swal.fire({
+    title: successMessage.value,
+    icon: "success",
+    confirmButtonText: "Listo",
+  });
+}
 
 const formStatusWithHeader = ref(true);
 
@@ -52,6 +85,10 @@ const formStatusSubmit = () => {
     ? formStatusCurrent.value + 1
     : 0;
 };
+
+const props = defineProps({
+  users: { type: Object },
+});
 </script>
 
 <template>
@@ -66,36 +103,39 @@ const formStatusSubmit = () => {
 
       <CardBox form @submit.prevent="submit">
         <!-- Imagen a la izquierda -->
-        <div class="flex flex-wrap items-center">
-          <div class="w-1/4">
-            <img src="ruta_de_la_imagen.jpg" alt="Imagen" />
-          </div>
-          
+        <div class="d-flex items-center">
           <!-- Caja de contenido -->
-          <div class="w-3/4 p-4">
-            <FormField label="Profesor Responsable">
-              <FormControl v-model="form.profesorResponsable" :icon="mdiAccount"/>
-            </FormField>
-
-            <FormField label="Nombre">
-              <FormControl v-model="form.nombre" :icon="mdiAccount"/>
+          <div class="wp-4">
+            <FormField label="Nombre del Curso">
+              <FormControl v-model="form.name" :icon="mdiAccount" />
             </FormField>
 
             <FormField label="Descripción">
-              <FormControl type="textarea" v-model="form.descripcion" />
+              <FormControl type="textarea" v-model="form.description" />
             </FormField>
 
             <FormField label="Fecha de Habilitación">
-              <FormControl type="date" v-model="form.fechaHabilitacion" />
+              <FormControl type="date" v-model="form.enable_date" />
             </FormField>
 
             <FormField label="Fecha de Terminación">
-              <FormControl type="date" v-model="form.fechaTerminacion" />
+              <FormControl type="date" v-model="form.end_date" />
             </FormField>
 
             <div class="flex justify-between mt-4">
-              <BaseButton type="submit" color="info" label="Confirmar" />
-              <BaseButton type="button" color="info" outline label="Cancelar" @click="cancel" />
+              <BaseButton
+                type="submit"
+                color="info"
+                label="Confirmar"
+                @click="submit"
+              />
+              <BaseButton
+                type="button"
+                color="info"
+                outline
+                label="Cancelar"
+                @click="cancel"
+              />
             </div>
           </div>
         </div>
@@ -103,29 +143,3 @@ const formStatusSubmit = () => {
     </SectionMain>
   </LayoutAuthenticated>
 </template>
-
-<script>
-export default {
-  data() {
-    return {
-      form: {
-        profesorResponsable: '',
-        nombre: '',
-        descripcion: '',
-        fechaCreacion: '',
-        fechaHabilitacion: '',
-        fechaTerminacion: '',
-        estado: true, // Estado predeterminado en true
-      },
-    };
-  },
-  methods: {
-    submit() {
-      // Aquí puedes manejar la lógica para enviar el formulario
-    },
-    cancel() {
-      // Aquí puedes manejar la cancelación del formulario
-    },
-  },
-};
-</script>

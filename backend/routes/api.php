@@ -30,27 +30,28 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/roles', [RoleController::class, 'index']);
 Route::put('/roles/update/{id}', [RoleController::class, 'update']);
 /* routes of user module */
-Route::get('/user', [UserController::class, 'index']); 
+Route::get('/user', [UserController::class, 'index']);
 Route::get('/user/findById/{id}', [UserController::class, 'showUserById']);
 Route::post('/user/create', [UserController::class, 'store']);
 Route::put('/user/update/{id}', [UserController::class, 'update']);
 Route::put('/user/setState/{id}', [UserController::class, 'editStateUser']);
 // routes of course
-Route::get('/course',[CourseController::class,'index']);
-Route::get('/course/findByName/{name}',[CourseController:: class, 'showCourseByName']);
-Route::post('/course/create',[CourseController::class,'store']);
-Route::put('/course/update/{id}',[CourseController::class,'update']);
-Route::put('/course/editState/{id}',[CourseController::class,'editStateCourse']);
+Route::get('/course', [CourseController::class, 'index']);
+Route::get('/course/{id}', [CourseController::class, 'getCourseId']);
+Route::get('/course/findByName/{name}', [CourseController::class, 'showCourseByName']);
+Route::post('/course/create', [CourseController::class, 'store']);
+Route::put('/course/update/{id}', [CourseController::class, 'update']);
+Route::put('/course/editState/{id}', [CourseController::class, 'editStateCourse']);
 // routes of topics
-Route::get('/topic',[TopicController::class,'index']);
-Route::get('/topic/findByName/{name}',[TopicController::class,'showTopicByName']); 
-Route::post('/topic/create',[TopicController::class,'store']);
-Route::put('/topic/update/{id}',[TopicController::class,'update']);
+Route::get('/topic', [TopicController::class, 'index']);
+Route::get('/topic/findByName/{name}', [TopicController::class, 'showTopicByName']);
+Route::post('/topic/create', [TopicController::class, 'store']);
+Route::put('/topic/update/{id}', [TopicController::class, 'update']);
 // routes of certificate
-Route::get('/certificate',[CertificateController::class,'index']);
-Route::get('/certificate/findByName/{name}',[CertificateController::class,'showCertificateByName']);
-Route::post('/certificate/create',[CertificateController::class,'store']);
-Route::get('/certificate/download',[CertificateController::class,'download']);
+Route::get('/certificate', [CertificateController::class, 'index']);
+Route::get('/certificate/findByName/{name}', [CertificateController::class, 'showCertificateByName']);
+Route::post('/certificate/create', [CertificateController::class, 'store']);
+Route::get('/certificate/download', [CertificateController::class, 'download']);
 /* Routes of assesment module */
 Route::get('/assesments', [AssesmentController::class, 'index']);
 Route::get('/assesments/findById/{id}', [AssesmentController::class, 'findById']);
