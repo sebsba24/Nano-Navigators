@@ -23,9 +23,7 @@ const form = reactive({
 const router = useRouter();
 
 const submit = () => {
-  // Aquí puedes manejar la lógica para enviar el formulario
-  // Por ejemplo, puedes enviar los datos al servidor o realizar otras operaciones necesarias.
-  router.push("/dashboard"); // Redirecciona al usuario después del registro
+  router.push("/dashboard");
 };
 </script>
 
@@ -50,11 +48,7 @@ const submit = () => {
         </FormField>
 
         <FormField label="Email">
-          <FormControl
-            v-model="form.email"
-            :icon="mdiAccount"
-            name="email"
-          />
+          <FormControl v-model="form.email" :icon="mdiAccount" name="email" />
         </FormField>
 
         <FormField label="Identificación">

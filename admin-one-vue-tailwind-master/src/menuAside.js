@@ -54,9 +54,4 @@ export default [
     label: "Profile",
     icon: mdiAccountCircle,
   },
-  {
-    to: "/error",
-    label: "Error",
-    icon: mdiAlertCircle,
-  },
 ];

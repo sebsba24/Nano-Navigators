@@ -30,7 +30,7 @@ export default {
       axios
         .get("http://localhost:8000/api/course")
         .then((response) => {
-          // Almacenar los datos de la respuesta en el array "items"
+          // Store the data of the response in the array "items"
           this.courses = response.data.data;
         })
         .catch((error) => {

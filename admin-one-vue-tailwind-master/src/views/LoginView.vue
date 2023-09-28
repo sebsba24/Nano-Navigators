@@ -57,15 +57,13 @@ const goToRegistration = () => {
             </FormField>
           </div>
         </div>
-
-        <!-- Botón de inicio de sesión debajo del campo de contraseña -->
         <div class="mt-4 flex justify-between items-center">
           <button
             class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           >
             Iniciar sesión
           </button>
-          <!-- Agrega un espacio entre los botones usando clases de Tailwind CSS -->
+          <!-- Create a space between both butoon with tailwind css -->
           <div class="w-4"></div>
           <button
             class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"

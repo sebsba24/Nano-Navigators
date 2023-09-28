@@ -102,9 +102,7 @@ const props = defineProps({
       </SectionTitleLineWithButton>
 
       <CardBox form @submit.prevent="submit">
-        <!-- Imagen a la izquierda -->
         <div class="d-flex items-center">
-          <!-- Caja de contenido -->
           <div class="wp-4">
             <FormField label="Nombre del Curso">
               <FormControl v-model="form.name" :icon="mdiAccount" />
