@@ -17,15 +17,13 @@ const form = reactive({
   identificacion: "",
   telefono: "",
   contraseña: "",
-  estado: true, // Estado predeterminado en true
+  estado: true,
 });
 
 const router = useRouter();
 
 const submit = () => {
-  // Aquí puedes manejar la lógica para enviar el formulario
-  // Por ejemplo, puedes enviar los datos al servidor o realizar otras operaciones necesarias.
-  router.push("/dashboard"); // Redirecciona al usuario después del registro
+  router.push("/dashboard");
 };
 </script>
 
@@ -42,36 +40,24 @@ const submit = () => {
         </FormField>
 
         <FormField label="Apellido(s)">
-          <FormControl
-            v-model="form.apellidos"            
-            name="apellidos"
-          />
+          <FormControl v-model="form.apellidos" name="apellidos" />
         </FormField>
 
         <FormField label="Email">
-          <FormControl
-            v-model="form.email"            
-            name="email"
-          />
+          <FormControl v-model="form.email" name="email" />
         </FormField>
 
         <FormField label="Identificación">
-          <FormControl
-            v-model="form.identificacion"            
-            name="identificacion"
-          />
+          <FormControl v-model="form.identificacion" name="identificacion" />
         </FormField>
 
         <FormField label="Teléfono">
-          <FormControl
-            v-model="form.telefono"            
-            name="telefono"
-          />
+          <FormControl v-model="form.telefono" name="telefono" />
         </FormField>
 
         <FormField label="Contraseña">
           <FormControl
-            v-model="form.contraseña"            
+            v-model="form.contraseña"
             type="password"
             name="contraseña"
           />

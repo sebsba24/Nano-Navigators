@@ -16,7 +16,7 @@ import CardBoxWidgetCourseRegister from "@/components/CardBoxWidgetCourseRegiste
 export default {
   data() {
     return {
-      courseId: null, // Para almacenar el ID del curso
+      courseId: null,
       course: null,
     };
   },

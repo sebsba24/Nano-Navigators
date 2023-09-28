@@ -11,14 +11,10 @@ import BaseButton from "@/components/BaseButton.vue";
 const router = useRouter();
 
 const redirectToCourseDetail = (courseId) => {
-  // Verifica que tengas un número válido (ID de curso)
   if (typeof courseId === "number" && courseId > 0) {
-    // Usa el número (ID) para redirigir al usuario a la vista CourseDetailView
     router.push({ name: "CourseDetailView", params: { id: courseId } });
   } else {
-    // Maneja el caso en el que el número no sea válido
     console.error("ID de curso no válido");
-    // Puedes mostrar un mensaje de error o realizar otra acción adecuada aquí
   }
 };
 
