@@ -93,6 +93,12 @@ class CourseController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    public function getCourseId($id)
+    {
+        $course = Course::where('id', $id)->get();
+        return response()->json($course);
+    }
+
     public function update(Request $request, $id)
     {
         try {
