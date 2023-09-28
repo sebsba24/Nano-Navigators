@@ -85,6 +85,10 @@ const formStatusSubmit = () => {
     ? formStatusCurrent.value + 1
     : 0;
 };
+
+const props = defineProps({
+  users: { type: Object },
+});
 </script>
 
 <template>
