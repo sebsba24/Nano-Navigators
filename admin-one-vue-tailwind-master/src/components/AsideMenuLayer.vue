@@ -18,10 +18,11 @@ const emit = defineEmits(["menu-click", "aside-lg-close-click"]);
 const styleStore = useStyleStore();
 
 const logoutItem = computed(() => ({
-  label: "Logout",
+  label: "Salir",
   icon: mdiLogout,
   color: "info",
   isLogout: true,
+  to:"/",
 }));
 
 const menuClick = (event, item) => {
