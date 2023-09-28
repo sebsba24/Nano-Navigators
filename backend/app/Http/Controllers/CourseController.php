@@ -14,19 +14,22 @@ class CourseController extends Controller
      */
         public function index()
         {
+
             try{
                 $courses = DB::table('courses')->get();
+
                 $response = [
                     'succes' => true,
                     'message' => 'Consulta de cursos exitosa',
                     'data' => $courses
                 ];
+                return response()->json($response,200);
             } catch (\Throwable $th){
-                $j['success'] = false;
-                $j['data'] = $th-> getMessage();
-                $j['code'] = 500;
+                return response()->json([
+                    'state' => false,
+                    'message' => $th->getMessage()
+                ]);
             }
-            return response()->json($response,200);
         }
 
     /**
@@ -97,7 +100,7 @@ class CourseController extends Controller
                 $course = Course::find($id);
 
                 if (!$course) {
-                    return res()->json(['success' => false, 'message'=> 'Curso no encontrado'],404);
+                    return response()->json(['success' => false, 'message'=> 'Curso no encontrado'],404);
                 }
 
                 $course->name = $request->name;

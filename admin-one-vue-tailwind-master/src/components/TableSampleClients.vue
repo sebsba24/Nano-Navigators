@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref } from "vue";
+import { computed, ref, onMounted} from "vue";
 import { useMainStore } from "@/stores/main";
 import { mdiEye, mdiTrashCan, mdiPencil } from "@mdi/js";
 import CardBoxModalDelete from "@/components/CardBoxModalDelete.vue";
@@ -10,6 +10,7 @@ import BaseButton from "@/components/BaseButton.vue";
 import UserAvatar from "@/components/UserAvatar.vue";
 import FormField from "@/components/FormField.vue";
 import FormControl from "@/components/FormControl.vue";
+import axios from "axios";
 
 defineProps({
   checkable: Boolean,
@@ -73,6 +74,22 @@ const checked = (isChecked, client) => {
   }
 };
 
+const users = ref([]);
+
+// Define el método getUsers utilizando la Composition API
+async function getUsers() {
+  try {
+    const response = await axios.get('http://localhost:8000/api/user');
+    users.value = response.data.data;
+  } catch (error) {
+    console.error('Error al obtener los datos:', error);
+  }
+}
+
+onMounted(() => {
+  getUsers();
+});
+
 const submit = () => {
   //
 };
@@ -132,40 +149,43 @@ const formStatusSubmit = () => {
       </tr>
     </thead>
     <tbody>
-      <tr v-for="client in itemsPaginated" :key="client.id">
+      <tr v-for="user in users" :key="user.id">
         <TableCheckboxCell
           v-if="checkable"
-          @checked="checked($event, client)"
+          @checked="checked($event, user)"
         />
         <td class="border-b-0 lg:w-6 before:hidden">
           <UserAvatar
-            :username="client.name"
+            :username="user.name"
             class="w-24 h-24 mx-auto lg:w-6 lg:h-6"
           />
         </td>
-        <td data-label="Name">
-          {{ client.name }}
+        <td data-label="Last_name">
+          {{ user.last_name }}
         </td>
-        <td data-label="Company">
-          {{ client.company }}
+        <td data-label="Email">
+          {{ user.email }}
         </td>
-        <td data-label="City">
-          {{ client.city }}
+        <td data-label="Identification">
+          {{ user.identification }}
         </td>
-        <td data-label="Progress" class="lg:w-32">
+        <td data-label="Phone">
+          {{ user.phone }}
+        </td>
+        <!-- <td data-label="Progress" class="lg:w-32">
           <progress
             class="flex w-2/5 self-center lg:w-full"
             max="100"
-            :value="client.progress"
+            :value="user.progress"
           >
-            {{ client.progress }}
+            {{ user.progress }}
           </progress>
-        </td>
+        </td> -->
         <td data-label="Created" class="lg:w-1 whitespace-nowrap">
           <small
             class="text-gray-500 dark:text-slate-400"
-            :title="client.created"
-            >{{ client.created }}</small
+            :title="user.role_id"
+            >{{ user.role_id }}</small
           >
         </td>
         <td class="before:hidden lg:w-1 whitespace-nowrap">

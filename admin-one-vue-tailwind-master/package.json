@@ -15,6 +15,7 @@
     "chart.js": "^3.6.0",
     "numeral": "^2.0.6",
     "pinia": "^2.0.13",
+    "sweetalert2": "^11.7.31",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0"
   },
